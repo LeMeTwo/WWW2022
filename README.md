@@ -8,12 +8,12 @@ Roleplay web chat application project for Web Technologies classes.
 - [@Ablesh1](https://github.com/Ablesh1)
 
 ## RoadMap
-- [] Management page frontend
-- [] Room frontend
-- [] Logging page frontend
-- [] General backend
-- [] Microservices
-- [] Server Deployment
+- [ ] Management page frontend
+- [ ] Room frontend
+- [ ] Logging page frontend
+- [ ] General backend
+- [ ] Microservices
+- [ ] Server Deployment
 
 ## TechStack
 HTML, CSS, Bootstrap, JavaScript, Jquery, React JS, Go, Docker, NoSQL
