@@ -19,4 +19,4 @@ Roleplay web chat application project for Web Technologies classes.
 HTML, CSS, Bootstrap, JavaScript, Jquery, React JS, Go, Docker, NoSQL
 
 ## Organisation
-Weekly sprints, before pushing always do a pull request
+Weekly sprints, pull requests before merging with main
