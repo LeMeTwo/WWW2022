@@ -16,6 +16,8 @@
     <link href="styles.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Own script -->
+    <script src="index.js"></script>
 </head>
 <body>
     <nav class="milk-glass">
@@ -54,6 +56,91 @@
             <div class="col-2 card" style="margin-right: 2vw">
                 <div class="card-body">
                     <h3>Your plays</h3>
+                    <div class="friends-list">
+                        <div class="list-group">
+                            <a class="list-group-item" href="#">
+                                <div class="rooms" id="room-1">
+                                    <img class="rooms-backgr" src="rooms_db/room_1.png" alt="room#1">
+                                    <div class="rooms-users default-room">
+                                        60 os.
+                                    </div>
+                                    <div class="new-msgs">
+                                        Check
+                                    </div>
+                                    <div class="rooms-title">
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teleinformatyka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            Aktywni teraz: 25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ostatnia aktywność: data
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item" href="#">
+                                <div class="rooms" id="room-2">
+                                    <img class="rooms-backgr" src="rooms_db/room_1.png" alt="room#1">
+                                    <div class="rooms-users default-room">
+                                        60 os.
+                                    </div>
+                                    <div class="new-msgs">
+                                        Check
+                                    </div>
+                                    <div class="rooms-title">
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teleinformatyka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            Aktywni teraz: 25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ostatnia aktywność: data
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item" href="#">
+                                <div class="rooms" id="room-3">
+                                    <img class="rooms-backgr" src="rooms_db/room_1.png" alt="room#1">
+                                    <div class="rooms-users default-room">
+                                        60 os.
+                                    </div>
+                                    <div class="rooms-title">
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teleinformatyka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            Aktywni teraz: 25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ostatnia aktywność: data
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item" href="#">
+                                <div class="rooms" id="room-4">
+                                    <img class="rooms-backgr" src="rooms_db/room_1.png" alt="room#1">
+                                    <div class="rooms-users default-room">
+                                        60 os.
+                                    </div>
+                                    <div class="rooms-title">
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teleinformatyka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            Aktywni teraz: 25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ostatnia aktywność: data
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item" href="#">
+                                <div class="rooms" id="room-5">
+                                    <img class="rooms-backgr" src="rooms_db/room_1.png" alt="room#1">
+                                    <div class="rooms-users default-room">
+                                        60 os.
+                                    </div>
+                                    <div class="rooms-title">
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teleinformatyka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            Aktywni teraz: 25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ostatnia aktywność: data
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-6 card">
@@ -78,48 +165,43 @@
                     <h3>Friends online</h3>
                     <div class="active-counter">
                         <h4></h4>
-                        <script>
-                            $().ready(function() {
-                                $(".active-counter h4").text($(".count").length);
-                            });
-                        </script>
                     </div>
                     <div class="friends-list">
                         <div class="list-group">
                             <a class="list-group-item count" href="#">
-                                <img src="backgrounds_db/pattern_background.png" alt="profile pic here">Radek
+                                <img class="profile-pic" src="backgrounds_db/pattern_background.png" alt="profile pic here">Radek
                                 <span class="badge badge-primary badge-pill">2</span>
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="icons_db/Account.png" alt="profile pic here">Sławek
+                                <img class="profile-pic" src="icons_db/Account.png" alt="profile pic here">Sławek
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_1.png" alt="profile pic here">Major
+                                <img class="profile-pic" src="profile_pics_db/pic_1.png" alt="profile pic here">Mj00r
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_2.png" alt="profile pic here">Potężny Warmianin (csgo.hellcase.org)
+                                <img class="profile-pic" src="profile_pics_db/pic_2.png" alt="profile pic here">Potężny Warmianin (csgo.hellcase.org)
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_3.png" alt="profile pic here">Loudwin
+                                <img class="profile-pic" src="profile_pics_db/pic_3.png" alt="profile pic here">Loudwin
                                 <span class="badge badge-primary badge-pill">14</span>
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_4.png" alt="profile pic here">Foczek
+                                <img class="profile-pic" src="profile_pics_db/pic_4.png" alt="profile pic here">Foczek
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_5.png" alt="profile pic here">Adam Flinta
+                                <img class="profile-pic" src="profile_pics_db/pic_5.png" alt="profile pic here">Adam Flinta
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_6.png" alt="profile pic here">Leszek
+                                <img class="profile-pic" src="profile_pics_db/pic_6.png" alt="profile pic here">Leszek
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_7.jpg" alt="profile pic here">Kaczor Donald
+                                <img class="profile-pic" src="profile_pics_db/pic_7.jpg" alt="profile pic here">Kaczor Donald
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_8.png" alt="profile pic here">Jim Beam
+                                <img class="profile-pic" src="profile_pics_db/pic_8.png" alt="profile pic here">Jim Beam
                             </a>
                             <a class="list-group-item count" href="#">
-                                <img src="profile_pics_db/pic_9.jpg" alt="profile pic here">Anser
+                                <img class="profile-pic" src="profile_pics_db/pic_9.jpg" alt="profile pic here">Anser
                             </a>
                         </div>
                     </div>
