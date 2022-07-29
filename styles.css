@@ -243,6 +243,7 @@ h3 {
 .rooms:hover .rooms-title p{
     animation: scroll 15s infinite linear;
     white-space: nowrap;
+    margin: 0;
 }
 
 .rooms-backgr {
