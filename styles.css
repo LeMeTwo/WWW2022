@@ -302,79 +302,6 @@ h3 {
 }
 
 
-/*Jakieś gówna do tekstów*/
-
-#usermsg {
-    flex: 1;
-    border-radius: 4px;
-    border: 1px solid #ff9800;
-}
-
-#name {
-    border-radius: 4px;
-    border: 1px solid #ff9800;
-    padding: 2px 8px;
-}
-
-#submitmsg,
-#enter{
-    background: #ff9800;
-    border: 2px solid #e65100;
-    color: white;
-    padding: 4px 10px;
-    font-weight: bold;
-    border-radius: 4px;
-}
-
-.error {
-    color: #ff0000;
-}
-
-#menu {
-    padding: 15px 25px;
-    display: flex;
-}
-
-#menu p.welcome {
-    flex: 1;
-}
-
-a#exit {
-    color: white;
-    background: #c62828;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-.msgln {
-    margin: 0 0 5px 0;
-}
-
-.msgln span.left-info {
-    color: orangered;
-}
-
-.msgln span.chat-time {
-    color: #666;
-    font-size: 60%;
-    vertical-align: super;
-}
-
-.msgln b.user-name, .msgln b.user-name-left {
-    font-weight: bold;
-    background: #546e7a;
-    color: white;
-    padding: 2px 4px;
-    font-size: 90%;
-    border-radius: 4px;
-    margin: 0 5px 0 0;
-}
-
-.msgln b.user-name-left {
-    background: orangered;
-}
-
 .input_label {
     position: absolute;
     left: 0;
@@ -387,6 +314,7 @@ a#exit {
     transition: transform 120ms ease-in;
     font-weight: bold;
     line-height: 1.2;
+
 }
 
 .icon {
@@ -394,7 +322,9 @@ a#exit {
     display: inline-block;
     width: 1.2em; height: 1.2em;
     margin-right: .5em;
-
+    text-decoration: tomato;
+    color: black;
+    pointer-events: none;
 }
 
 .input_line {
@@ -409,5 +339,18 @@ a#exit {
 
 .chatbox {
     background: -webkit-linear-gradient(#c6ff55, #55d9f0);
+    /*Bo kurde czemu nie*/
+    text-decoration: tomato;
+    color: black;
+    pointer-events: none;
+}
 
+.chatContainer{
+    background: transparent;
+    border: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2vh 0 2vh 0;
+    pointer-events: none;
 }
