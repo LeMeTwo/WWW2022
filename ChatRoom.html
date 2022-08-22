@@ -20,39 +20,8 @@
   <!-- Own script -->
   <script src="index.js"></script>
 
-  <script>
-
-    var socket;
-      window.onload = function(){
-        socket = new WebSocket("ws://127.0.0.1:8612");
-        socket.onmessage = handleMessage;
-        document.getElementById("usermsg").onkeydown = handleKeyPress;
-      };
-
-      function handleMessage(msg){
-        var elem = document.createElement("div");
-        elem.className = "entry";
-        elem.innerHTML = msg.data;
-        document.getElementById("chatbox").appendChild(elem);
-      }
-
-      function handleKeyPress(e){
-        if (e.keyCode === 13) {
-          var text = document.getElementById("usermsg").value;
-          if (text !== ""){
-            document.getElementById("usermsg").value = "";
-            socket.send(text);
-          }
-          else{
-            text = " "
-            socket.send(text)
-          }
-        }
-
-      }
-
-  </script>
-
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
 
 </head>
 <body>
@@ -195,17 +164,16 @@
         <hr>
         <h3>Chat</h3>
         <div class="container">
-          <a href="#" class="list-group-item">
-            <div class="chatbox" id="chatbox"></div>
+          <a class="containter">
+            <div class="chatbox" id="chatbox">
 
-            <form name="message" action="">  <div class="card card--inverted">
+            <div id="message-container"></div></div>
+            <form id="send-container">
               <h1>  <img class="icon" aria-hidden="true" src="profile_pics_db/pic_4.png">
               </h1>
-              <label class="input">
-                <input class="input_line" style="width: max-content" name="usermsg" type="text" id="usermsg" />
-                <span class="input_label">Chat:</span>
-              </label>
-            </div></form>
+              <input type="text" id="message-input">
+              <button type="submit" id="send-button">Send</button>
+            </form>
           </a>
         </div>
       </div>

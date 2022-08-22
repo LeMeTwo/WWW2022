@@ -1,6 +1,19 @@
 {
+  "name": "current-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "websockets": "^0.2.0",
-    "ws": "^8.8.1"
+    "pg": "^8.7.3",
+    "postgresql": "^0.0.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
   }
 }

@@ -1,0 +1,12 @@
+1. Zainstaluj node.js
+2. Otwórz ten folder w cmd
+3. wpisz: node index.js
+4. Jeśli wszystko pójdzie ok, konsola ci się zawiesi, chat będzie działał
+
+
+5. Jeśli nie wszystko pójdzie dobrze spróbuj usunąć node_modules
+6. W cmd: npm install
+7. W cmd: npm install ws
+8. W cmd: npm install websockets
+
+Jeśli żadne z powyrzszych nie pomaga, przywołaj widmo się do Alana Turringa 
