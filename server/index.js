@@ -4,7 +4,55 @@ var wsServer = ws.createServer();
 
 var clientList = [];
 //Zamist id będzie się brało loginy w przyszłości
+//Ale najpierw trzeba zrobić logowanie
 var id = 0;
+
+
+
+
+
+
+//SQL
+
+const mysql = require('pg');
+
+const DATABASE_HOST='localhost';
+const DATABASE_USER='postgres';
+const DATABASE_PASSWORD='admin';
+const DATABASE_NAME='postgres';
+
+const {Client} = require('pg');
+
+
+const main = async () => {
+    const client = new Client({
+        user: DATABASE_USER,
+        password: DATABASE_PASSWORD,
+        database: DATABASE_NAME,
+        host: DATABASE_HOST,
+    });
+    await client.connect();
+    try {
+        //Test połączenia z bazą
+        console.log(await client.query('SELECT * FROM userdb'));
+    } finally {
+        //Módl się, żeby ta linijka się nie załączyła
+        await client.end();
+    }
+};
+
+main().catch(console.error);
+
+
+
+//Kod użytkowy down there:
+
+
+
+
+
+
+
 
 //Mapa do trzymania języków użytkownika
 var map = new Map();
@@ -38,6 +86,7 @@ wsServer.on("connect", function(client){
                         //c.send(test1[j] + " inner");
                         //c.send(test2[i] + " inner");
                         //c.send(client.id + ": " + msg + " POW TU WESZŁO");
+                        c.send(client.id + ": " + msg);
                         return
                     }
                 }
