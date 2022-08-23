@@ -342,7 +342,6 @@ h3 {
     /*Bo kurde czemu nie*/
     text-decoration: tomato;
     color: black;
-    pointer-events: none;
 }
 
 .chatContainer{
@@ -352,5 +351,4 @@ h3 {
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 2vh 0 2vh 0;
-    pointer-events: none;
 }
