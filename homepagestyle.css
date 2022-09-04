@@ -1,6 +1,7 @@
 body {
     height: auto;
     width: auto;
+    overflow-x: hidden;
     background-color: #262688;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -24,9 +25,8 @@ body {
     position: relative;
 }
 
-video {
-    width: 100%;
-    height: 100%;
+.main-container > h1 {
+    font-size: 100px;
 }
 
 .header {
@@ -52,7 +52,7 @@ video {
 }
 
 .log-button {
-    font-size: 4vh;
+    font-size: 30px;
     margin: 5px 0 0 auto;
     padding: 0 5px 0 5px;
 }
@@ -63,7 +63,7 @@ video {
 }
 
 .sign-button {
-    font-size: 4vh;
+    font-size: 30px;
     margin: 5px 0 0 0;
     padding: 0 5px 0 5px;
     background: -webkit-linear-gradient(#55ff93, #55f0ee);
@@ -98,4 +98,41 @@ video {
 
 .number-center {
     margin-top: 10px;
+}
+
+.vr {
+    width: 3px;
+}
+
+@media only screen and (max-width: 800px) {
+    .side-text {
+        visibility: hidden;
+        width: 0;
+    }
+
+    .main-container > h1 {
+        font-size: 40px;
+    }
+
+    .log-button {
+        font-size: 20px;
+        margin: 15px 0 15px 0;
+    }
+
+    .sign-button {
+        font-size: 20px;
+        margin: 15px 0 15px 0;
+    }
+
+    .header > div {
+        margin-right: 5px;
+    }
+
+    .vr {
+        width: 0;
+    }
+
+    .header {
+        justify-content: center;
+    }
 }
