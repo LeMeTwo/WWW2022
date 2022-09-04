@@ -30,21 +30,6 @@
             <ul class="row">
                 <li class="col-auto">
                     <a href="#">
-                        <img src="icons_db/Settings.png" alt="Settings">
-                    </a>
-                </li>
-                <li class="col-auto">
-                    <a href="#">
-                        <img src="icons_db/Rank.png" alt="Rank">
-                    </a>
-                </li>
-                <li class="col-auto">
-                    <a href="#">
-                        <img src="icons_db/Priv.png" alt="Priv">
-                    </a>
-                </li>
-                <li class="col-auto">
-                    <a href="#">
                         <img src="icons_db/Logout.png" alt="Logout">
                     </a>
                 </li>
@@ -151,23 +136,20 @@
             <div class="col-6 card">
                 <div class="card-body">
                     <h3>About</h3>
-                    <p>This is the description template of a chat with maximum text length of X words. It is changed
+                    <p class="scrollable">This is the description template of a chat with maximum text length of X words. It is changed
                     on focus to the chat that has been clicked once. It may contain emojis &#127774 &#127814 &#128115
                     <del>and</del> as well as markdown style text edition. May contain basic rules, but it shouldn't
                     be a full set of rules. badscvjiwvwvmkldwnvjuwbvcdjmckwmbniubnwirmvewkcvnwbvrjvndkwvnehbwjvcnkcnjcbewjuv
                     ... and so on
                     </p>
                     <hr>
-                    <h3>Chats</h3>
+                    <h3>Nothing to show</h3>
                     <div class="container">
-                        <a href="#" class="list-group-item">
-                            <div class="row" style="justify-content: center">Chat no1</div>
-                        </a>
-                    </div>
-                    <div class="container">
-                        <a href="#" class="list-group-item">
-                            <div class="row" style="justify-content: center">Chat no2</div>
-                        </a>
+                        <div class="chatbox" id="chatbox"><div class="chatbox" id="message-container"></div></div>
+                        <form id="send-container" class="hide-me">
+                            <label for="message-input"></label><input type="text" id="message-input">
+                            <button type="submit" id="send-button">Send</button>
+                        </form>
                     </div>
                 </div>
             </div>

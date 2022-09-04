@@ -287,26 +287,10 @@ h3 {
     }
 }
 
-#chatbox {
-    text-align: left;
-    margin: 0 auto;
-    margin-bottom: 25px;
-    padding: 10px;
-    background: #fff;
-    height: 300px;
-    width: 530px;
-    border: 1px solid #a7a7a7;
-    overflow: auto;
-    border-radius: 4px;
-    border-bottom: 4px solid #a7a7a7;
-}
-
-
 .input_label {
     position: absolute;
     left: 0;
     top: 0;
-
     background: -webkit-linear-gradient(#55ff93, #55f0ee);
     white-space: nowrap;
     transform: translate(0, 0);
@@ -329,7 +313,6 @@ h3 {
 
 .input_line {
     position: center;
-
     background: -webkit-linear-gradient(#55ff93, #55f0ee);
     white-space: nowrap;
     font-weight: bold;
@@ -338,10 +321,16 @@ h3 {
 }
 
 .chatbox {
-    background: -webkit-linear-gradient(#c6ff55, #55d9f0);
-    /*Bo kurde czemu nie*/
     text-decoration: tomato;
     color: black;
+    text-align: left;
+    margin-bottom: 25px;
+    overflow-y: auto;
+    border-radius: 4px;
+    max-height: 45vh;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .chatContainer{
@@ -351,4 +340,18 @@ h3 {
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 2vh 0 2vh 0;
+}
+
+.scrollable {
+    overflow-x: hidden;
+    max-height: 10vh;
+    scrollbar-width: none;
+}
+
+.scrollable::-webkit-scrollbar {
+    display: none;
+}
+
+.chatbox::-webkit-scrollbar {
+    display: none;
 }
