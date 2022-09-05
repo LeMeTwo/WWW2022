@@ -267,17 +267,6 @@ h3 {
     border-radius: 5px;
 }
 
-.new-msgs {
-    background: -webkit-linear-gradient(#55ff93, #55f0ee);
-    position: absolute;
-    top: 0;
-    font-size: clamp(0vw, 0.7vw, 0.9vw);
-    color: black;
-    margin: 5px 0 0 5px;
-    padding: 3px;
-    border-radius: 2px;
-}
-
 @keyframes scroll {
     from {
         transform: translateX(100%);
@@ -327,7 +316,7 @@ h3 {
     margin-bottom: 25px;
     overflow-y: auto;
     border-radius: 4px;
-    max-height: 45vh;
+    height: 45vh;
     scrollbar-width: none;
     display: flex;
     flex-direction: column-reverse;
@@ -354,4 +343,15 @@ h3 {
 
 .chatbox::-webkit-scrollbar {
     display: none;
+}
+
+#send-container > * {
+    margin: 5px;
+    border: none;
+}
+
+#send-container > button {
+    background-color: #494949;
+    border-radius: 5px;
+    color: #999999;
 }

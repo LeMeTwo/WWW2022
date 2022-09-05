@@ -68,4 +68,11 @@ $().ready(function() {
         return false;
     })
 
+    $("#message-input").emojioneArea({
+       pickerPosition: 'bottom'
+    });
+
+    $("#send-button").click(function (e){
+        document.getElementsByClassName('.emojionearea-editor').value='';
+    });
 });
