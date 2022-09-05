@@ -7,11 +7,14 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const users = {}
-const {Client} = require('pg')
+const {Client} = require('pg');
+const { connectionString } = require('pg/lib/defaults');
 const DATABASE_HOST='labagh.pl';
 const DATABASE_USER='s408427';
 const DATABASE_PASSWORD='vwe501nrgotg';
 const DATABASE_NAME='s408427';
+
+var id = 4
 
 //Lacznosc z db
 const main = async () => {
@@ -21,11 +24,11 @@ const main = async () => {
       database: DATABASE_NAME,
       host: DATABASE_HOST,
   });
-  await clientA.connect();
+  //await clientA.connect();
   try {
       //Test połączenia z bazą
       console.log('lol');
-      console.log(await clientA.query('SELECT * FROM usersdb'));
+      //console.log(await clientA.query('SELECT * FROM usersdb'));
   } finally {
       //Módl się, żeby ta linijka się nie załączyła
       //await clientA.end();
@@ -43,9 +46,11 @@ var server = app.listen(8081, function () {
 
 //Sprawdź, czy konto już instnieje, możn użyć też do logowania 
 app.post('/CanRegister', jsonParser, async function (req, res) {
+  //Where is JSON?
   const body = req.body;
-  console.log(req.body)
-  //No validation, I`m too lazy bruh
+  //^Found him!
+
+  //No validation, I`m too lazy bruh, meybe will finish at 2nd level 
 
 
 
@@ -58,10 +63,44 @@ app.post('/CanRegister', jsonParser, async function (req, res) {
     }); 
 
     await clientA.connect();
-    var result = (await clientA.query('SELECT login FROM usersdb WHERE id=0', function(err, rows, fields) {
+    //Function declared and used as var. Doesn`t look very nice. ToDo 
+    var result = (await clientA.query('SELECT login FROM usersdb WHERE login=' + connectionString.escape(body.logins), function(err, rows, fields) {
 
       if (rows.rowCount == 0) {
-        res.end(JSON.stringify("Można stworzyć konto"))
+        console.log("Można stworzyć konto " + body.login + " " + body.email)
+      }
+
+      else{res.end(JSON.stringify(rows.rows));}
+
+    }))
+    await clientA.query('INSERT INTO table_name (id, login, email, password) VALUES (' + id + ', ' + body.login + ', ' + body.email + '. ' + body.password + ');')
+    res.end("Stworzono konto")
+    console.log("Stworzono konto " + body.login + " " + body.email)
+    id += 1 
+    console.log("/CanRegister?")
+})
+
+app.post('/Login', jsonParser, async function (req, res) {
+  const body = req.body;
+
+
+  //Pewnie do poprawki, na pewno da się zrobić lepiej
+  const clientA = new Client({
+    user: DATABASE_USER,
+    password: DATABASE_PASSWORD,
+    database: DATABASE_NAME,
+    host: DATABASE_HOST,
+    }); 
+
+    await clientA.connect();
+    //Function declared and used as var. Doesn`t look very nice. ToDo 
+    var result = (await clientA.query('SELECT login FROM usersdb WHERE login=' + connectionString.escape(body.logins), function(err, rows, fields) {
+
+      if (rows.rowCount == 0) {
+        await clientA.query('INSERT INTO table_name (id, login, email, password) VALUES (' + id + ', ' + body.login + ', ' + body.email + '. ' + body.password + ');')
+        res.end("Stworzono konto")
+        console.log("Stworzono konto" + body.login + " " + body.email)
+        id += 1 
         return
       }
 
@@ -71,40 +110,44 @@ app.post('/CanRegister', jsonParser, async function (req, res) {
     console.log("/CanRegister?")
 })
 
-
 //Tu będzie dodawanie do bazy danych
 //Jeszcze niegotowe
+//Chyba niepotrzebne(?)
+//Na razie nie wywoływać!
 app.get('/AddToDB',  async function (req, res) {
   console.log(req)
-  //Pewnie do poprawki, na pewno da się zrobić lepiej
-  const clientA = new Client({
-    user: DATABASE_USER,
-    password: DATABASE_PASSWORD,
-    database: DATABASE_NAME,
-    host: DATABASE_HOST,
-    }); 
-
-    await clientA.connect();
-    await clientA.query('INSERT INTO table_name (id, login, email, password) VALUES (value1, value2, value3, value4);')
-    console.log("/AddToDB?")
+  return 
+  console.log("/AddToDB?")
 })
+
+//ToDO: Obsługa bazy z pokojami 
+//ToDo: Tworzenie pokojów
+//ToDo: Usuwanie urzytkowników (może)
+
+
+
+
+
 };
+
+
 
 main().catch(console.error);
 
 
-//Sockety
+//Chat. Simple as. 
 io.on('connection', socket => {
   socket.on('new-user', name => {
-    console.log("LOL2")
+    console.log("New user joined: " + name)
     users[socket.id] = name
     socket.broadcast.emit('user-connected', name)
   })
   socket.on('send-chat-message', message => {
-    console.log("LOL")
+    console.log("Sent message: " + message)
     socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
   })
   socket.on('disconnect', () => {
+    console.log("User disconnected")
     socket.broadcast.emit('user-disconnected', users[socket.id])
     delete users[socket.id]
   })
