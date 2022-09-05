@@ -24,11 +24,11 @@ const main = async () => {
       database: DATABASE_NAME,
       host: DATABASE_HOST,
   });
-  //await clientA.connect();
+  await clientA.connect();
   try {
       //Test połączenia z bazą
       console.log('lol');
-      //console.log(await clientA.query('SELECT * FROM usersdb'));
+      console.log(await clientA.query('SELECT * FROM usersdb'));
   } finally {
       //Módl się, żeby ta linijka się nie załączyła
       //await clientA.end();
