@@ -3,7 +3,7 @@ $().ready(function (){
     // Define POST method with fetch API
     async function postData(data = {}, suffix) {        
         // Default options are marked with *n
-        url = 'https://domain.com/' + suffix;
+        url = 'localhost:8081/' + suffix;
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           body: JSON.stringify(data)
@@ -36,9 +36,11 @@ $().ready(function (){
                 $(".form-alert").show().text("Your password does not meet our password criteria! You need to figure out something more difficult!");
             } else {
                 generateJson.nick = nick;
-                generateJson.password = password;
                 generateJson.email = email;
-                postData(); //TODO
+                generateJson.password = password;
+
+                postData(generateJson, "CanRegister");
+                window.location.replace("../MainPage.html");
             }
         } else {
             $(".form-alert").show().text("You need to confirm that you are 15 years old or above and have read and accept Use Terms!");
