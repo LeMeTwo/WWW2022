@@ -80,6 +80,7 @@ app.post('/CanRegister', jsonParser, async function (req, res) {
     console.log("/CanRegister?")
 })
 
+//Will finish logging in once I can test it on db
 app.post('/Login', jsonParser, async function (req, res) {
   const body = req.body;
 
@@ -97,7 +98,7 @@ app.post('/Login', jsonParser, async function (req, res) {
     var result = (await clientA.query('SELECT login FROM usersdb WHERE login=' + connectionString.escape(body.logins), function(err, rows, fields) {
 
       if (rows.rowCount == 0) {
-        await clientA.query('INSERT INTO table_name (id, login, email, password) VALUES (' + id + ', ' + body.login + ', ' + body.email + '. ' + body.password + ');')
+      //  await clientA.query('INSERT INTO table_name (id, login, email, password) VALUES (' + id + ', ' + body.login + ', ' + body.email + '. ' + body.password + ');')
         res.end("Stworzono konto")
         console.log("Stworzono konto" + body.login + " " + body.email)
         id += 1 
