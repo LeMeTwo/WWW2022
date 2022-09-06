@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Roleplay Chat - login page</title>
+    <!-- Roboto font tags -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Stylesheet -->
+    <link href="loginstyles.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--Script file-->
+    <script src="index.js"></script>
+</head>
+<body>
+<nav>
+    <h1 class="logo">Chatter</h1>
+    <a href="../homepage.html" class="back">
+        <h3>Back home</h3>
+    </a>
+</nav>
+<div class="my-form">
+    <h1>Good to see you again!</h1>
+    <form>
+        <div class="form-group">
+            <label for="mail">Email here:</label><br>
+            <input type="email" name="mail" id="mail" class="form-control" maxlength="100">
+        </div>
+        <div class="form-group">
+            <label for="pass">Password here:</label><br>
+            <input type="password" name="pass" id="pass" class="form-control" maxlength="300">
+        </div>
+        <div class="form-check d-flex justify-content-center">
+            <input type="checkbox" class="form-check-input" id="passDisplay">
+            <label class="form-check-label" for="passDisplay">Peek my password</label>
+        </div>
+        <br>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary my-submit">Connect!</button>
+        </div>
+        <div class="form-alert text-center"></div>
+    </form>
+</div>
+</body>
+</html>
