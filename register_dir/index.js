@@ -3,12 +3,17 @@ $().ready(function (){
     // Define POST method with fetch API
     async function postData(data = {}, suffix) {        
         // Default options are marked with *n
-        url = 'localhost:8081/' + suffix;
+        url = 'http://127.0.0.1:8081/' + suffix;
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          headers: { //Nienawidzę antychrysta
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }, 
           body: JSON.stringify(data)
         });
-        return response.json(); // parses JSON response into native JavaScript objects
+        console.log(JSON.stringify(data))
+        return response; // parses JSON response into native JavaScript objects
     }
 
     $("#passDisplay").click(showPass);
@@ -26,7 +31,7 @@ $().ready(function (){
 
     $(".my-form > form > div > button").click(function(e){
         if ($("#ageConfirm").is(':checked') && $("#rulesConfirm").is(':checked')) {
-            var nick = $("#nick").val();
+            var login = $("#nick").val();
             var password = $("#pass").val();
             var email = $("#mail").val();
             var generateJson = {};
@@ -35,12 +40,12 @@ $().ready(function (){
             if (!(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&-]).{8,}$/.test(password))) {
                 $(".form-alert").show().text("Your password does not meet our password criteria! You need to figure out something more difficult!");
             } else {
-                generateJson.nick = nick;
+                generateJson.login = login;
                 generateJson.email = email;
                 generateJson.password = password;
 
                 postData(generateJson, "CanRegister");
-                window.location.replace("../MainPage.html");
+                //window.location.replace("../MainPage.html");
             }
         } else {
             $(".form-alert").show().text("You need to confirm that you are 15 years old or above and have read and accept Use Terms!");
