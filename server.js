@@ -4,7 +4,14 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var cors = require('cors')
+app.use(cors())
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+// parse application/json
+app.use(bodyParser.json())
+
+
 
 const users = {}
 const {Client} = require('pg');
@@ -45,10 +52,11 @@ var server = app.listen(8081, function () {
 })
 
 //Sprawdź, czy konto już instnieje, możn użyć też do logowania 
-app.post('/CanRegister', jsonParser, async function (req, res) {
+app.post('/CanRegister', async function (req, res) {
   //Where is JSON?
   const body = req.body;
   //^Found him!
+  console.log(req.body.login)
 
   //No validation, I`m too lazy bruh, meybe will finish at 2nd level 
 

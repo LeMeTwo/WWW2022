@@ -6,7 +6,7 @@ $().ready(function (){
         url = 'http://127.0.0.1:8081/' + suffix;
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          headers: {
+          headers: { //Nienawidzę antychrysta
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }, 
