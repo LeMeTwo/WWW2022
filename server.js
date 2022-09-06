@@ -155,6 +155,10 @@ io.on('connection', socket => {
     console.log("Sent message: " + message)
     socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
   })
+  socket.on('send-chat-roll', roll => {
+    console.log("Sent roll: " + roll)
+    socket.broadcast.emit('chat-roll', { roll: roll, name: users[socket.id] }) 
+  })
   socket.on('disconnect', () => {
     console.log("User disconnected")
     socket.broadcast.emit('user-disconnected', users[socket.id])

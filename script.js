@@ -4,6 +4,9 @@ $().ready(function (){
   const messageForm = document.getElementById('send-container')
   const messageInput = document.getElementById('message-input')
 
+  const rollContainer = document.getElementById('roll-container')
+  const rollForm = document.getElementById('roll-button-container')
+
   const name = prompt('What is your name?')
   appendMessage('You joined')
   socket.emit('new-user', name)
@@ -30,7 +33,38 @@ $().ready(function (){
 
   function appendMessage(message) {
     const messageElement = document.createElement('div')
+    messageElement.setAttribute("style", "margin-top: 5px; margin-bottom: 5px");
     messageElement.innerText = message
     messageContainer.prepend(messageElement)
+  }
+
+  socket.on('chat-roll', data => {
+    appendRoll(`${data.name}: ${data.roll}`)
+    })
+
+  rollForm.addEventListener('submit', e => {
+    e.preventDefault()
+    
+    var dice = new Array()
+    dice[0] = "<img src=\'dice_sides_db/dice1.png\' width=\'50px\' height=\'50px\'>";
+    dice[1] = "<img src=\'dice_sides_db/dice2.png\' width=\'50px\' height=\'50px\'>";
+    dice[2] = "<img src=\'dice_sides_db/dice3.png\' width=\'50px\' height=\'50px\'>";
+    dice[3] = "<img src=\'dice_sides_db/dice4.png\' width=\'50px\' height=\'50px\'>";
+    dice[4] = "<img src=\'dice_sides_db/dice5.png\' width=\'50px\' height=\'50px\'>";
+    dice[5] = "<img src=\'dice_sides_db/dice6.png\' width=\'50px\' height=\'50px\'>";
+    var json = Math.floor(Math.random() * 6);
+    //const roll = "<img src=\'https://www.shareicon.net/data/128x128/2017/04/19/884238_dice_512x512.png\' width=\'50px\' height=\'50px\'>";
+    //const roll = "<img src=\'dice_sides_db/dice1.png\' width=\'50px\' height=\'50px\'>";
+    const roll = dice[json]
+    
+    appendRoll(`You: ${roll}`)
+    socket.emit('send-chat-roll', roll)
+  })
+
+  function appendRoll(roll) {
+    const rollElement = document.createElement('div')
+    rollElement.setAttribute("style", "margin-top: 5px; margin-bottom: 5px");
+    rollElement.innerHTML = roll
+    rollContainer.prepend(rollElement)
   }
 });
