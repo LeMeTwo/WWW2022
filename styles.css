@@ -106,11 +106,11 @@ nav {
 }
 
 .col-2 {
-    min-height: 85vh;
+    height: 85vh;
 }
 
 .col-6 {
-    min-height: 85vh;
+    height: 85vh;
 }
 
 .main-content {
@@ -327,6 +327,31 @@ h3 {
     font-weight: bold;
     line-height: 1.2;
     width: content-box;
+}
+
+.main-logo {
+    text-decoration: tomato;
+    color: #303030;
+    text-align: center;
+    margin-bottom: 5px;
+    overflow-y: auto;
+    border-radius: 4px;
+    height: 67.5vh;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 22vh 0vh 22vh 00vh;
+}
+
+.main-logo::-webkit-scrollbar {
+    display: none;
+}
+
+.chatter {
+    font-size: 16vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chatbox {
