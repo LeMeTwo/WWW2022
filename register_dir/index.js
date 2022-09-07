@@ -6,7 +6,7 @@ $().ready(function (){
         url = 'http://127.0.0.1:8081/' + suffix;
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          headers: { //Nienawidzę antychrysta
+          headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }, 
@@ -37,7 +37,9 @@ $().ready(function (){
             var generateJson = {};
 
             // Regex for password validation
-            if (!(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&-]).{8,}$/.test(password))) {
+            if (password === '' || email === '' || login === '') {
+                $(".form-alert").show().text("You need to fill in all blanks!");
+            } else if (!(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&-]).{8,}$/.test(password))){
                 $(".form-alert").show().text("Your password does not meet our password criteria! You need to figure out something more difficult!");
             } else {
                 generateJson.login = login;

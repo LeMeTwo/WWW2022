@@ -30,16 +30,16 @@ $().ready(function (){
     $(".form-alert").hide();
 
     $(".my-form > form > div > button").click(function(e){
-        var login = $("#nick").val();
         var password = $("#pass").val();
         var email = $("#mail").val();
         var generateJson = {};
 
         // Regex for password validation
-        if (!(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&-]).{8,}$/.test(password))) {
+        if (password === '' || email === '') {
+            $(".form-alert").show().text("You need to fill in all blanks!");
+        } else if (!(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&-]).{8,}$/.test(password))){
             $(".form-alert").show().text("Your password does not meet our password criteria! You need to figure out something more difficult!");
         } else {
-            generateJson.login = login;
             generateJson.email = email;
             generateJson.password = password;
             postData(generateJson, "CanLogin");
