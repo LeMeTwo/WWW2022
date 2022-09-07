@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // parse application/json
 app.use(bodyParser.json())
 
-
+global.regcheck = 0
 
 const users = {}
 const {Client} = require('pg');
@@ -64,7 +64,7 @@ app.post('/CanRegister', async function (req, res) {
   //No validation, I`m too lazy bruh, meybe will finish at 2nd level 
 
 
-
+  regcheck = 0
   //Pewnie do poprawki, na pewno da się zrobić lepiej
   const clientA = new Client({
     user: DATABASE_USER,
@@ -72,28 +72,29 @@ app.post('/CanRegister', async function (req, res) {
     database: DATABASE_NAME,
     host: DATABASE_HOST,
     }); 
-
+    console.log("Test")
     await clientA.connect();
     //Function declared and used as var. Doesn`t look very nice. ToDo 
-    var result = (await clientA.query('SELECT login FROM usersdb WHERE login=' + connectionString.escape(body.logins), function(err, rows, fields) {
+    var result = (await clientA.query("SELECT login FROM usersdb WHERE login='" + (body.login) + "'"))
 
-      if (rows.rowCount == 0) {
-        console.log("Można stworzyć konto " + body.login + " " + body.email)
-      }
-
-      else{res.end(JSON.stringify(rows.rows));}
-
-    }))
-    await clientA.query('INSERT INTO table_name (id, login, email, password) VALUES (' + id + ', ' + body.login + ', ' + body.email + '. ' + body.password + ');')
-    res.end("Stworzono konto")
+    if(result.rowCount === 0){
+    await clientA.query("INSERT INTO usersdb (id, login, email, password) VALUES (" + id + ", '" + body.login + "', '" + body.email + "', '" + body.password + "');")
+    res.end(JSON.stringify('"Response":"Stworzono konto"'));
     console.log("Stworzono konto " + body.login + " " + body.email)
-    id += 1 
+    id += 1 }
+    else{
+      console.log("Konto istnieje " + body.login) 
+      res.end(JSON.stringify('"Response":"Konto Istnieje"'));
+    }
+
     console.log("/CanRegister?")
 })
 
 app.post('/CanLogin', jsonParser, async function (req, res) {
   const body = req.body;
 
+  console.log(req.body)
+  console.log(req.body.email)
 
   //Pewnie do poprawki, na pewno da się zrobić lepiej
   const clientA = new Client({
@@ -105,18 +106,17 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
 
     await clientA.connect();
     //Function declared and used as var. Doesn`t look very nice. ToDo 
-    var result = (await clientA.query('SELECT login FROM usersdb WHERE password=' + connectionString.escape(body.password), function(err, rows, fields) {
+    console.log("SELECT login FROM usersdb WHERE email='" + (body.email) + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" )
 
-      if (rows.rowCount != 0) {
-        res.end("id=" + rows.id)
-        console.log("Zalogowano" + body.login)
-
-        return
+    var result = (await clientA.query("SELECT login FROM usersdb WHERE email='" + (body.email) + "' AND password='" + body.password + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" ))
+    if(result.rowCount === 0){
+      res.end(JSON.stringify('"Response":"Zły login lub hasło"'));
+      console.log("Zły login lub hasło " + body.email + " " + body.password)
+     }
+      else{
+        console.log("Poprawny login i hasło " + body.email) 
+        res.end(JSON.stringify('"Response":"Uwierzytelniono"'));
       }
-
-      else{res.end("Zły login lub hasło");}
-
-    }))
     console.log("/CanLogin?")
 })
 
