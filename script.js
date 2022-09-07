@@ -23,7 +23,7 @@ $().ready(function (){
   const name = nick[json]
   //const name = prompt('What is your name?')
   appendMessage('You joined')
-  socket.emit('priv-new-user', name)
+  socket.emit('new-user', name)
 
   socket.on('chat-message', data => {
     appendMessage(`${data.name}: ${data.message}`)
