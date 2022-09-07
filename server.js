@@ -88,8 +88,7 @@ app.post('/CanRegister', async function (req, res) {
     console.log("/CanRegister?")
 })
 
-//Will finish logging in once I can test it on db
-app.post('/Login', jsonParser, async function (req, res) {
+app.post('/CanLogin', jsonParser, async function (req, res) {
   const body = req.body;
 
 
@@ -103,20 +102,18 @@ app.post('/Login', jsonParser, async function (req, res) {
 
     await clientA.connect();
     //Function declared and used as var. Doesn`t look very nice. ToDo 
-    var result = (await clientA.query('SELECT login FROM usersdb WHERE login=' + connectionString.escape(body.logins), function(err, rows, fields) {
+    var result = (await clientA.query('SELECT login FROM usersdb WHERE password=' + connectionString.escape(body.password), function(err, rows, fields) {
 
-      if (rows.rowCount == 0) {
-      //  await clientA.query('INSERT INTO table_name (id, login, email, password) VALUES (' + id + ', ' + body.login + ', ' + body.email + '. ' + body.password + ');')
-        res.end("Stworzono konto")
-        console.log("Stworzono konto" + body.login + " " + body.email)
-        id += 1 
+      if (rows.rowCount != 0) {
+        res.end("id=" + rows.id)
+        console.log("Zalogowano" + body.login)
         return
       }
 
-      else{res.end(JSON.stringify(rows.rows));}
+      else{res.end("Zły login lub hasło");}
 
     }))
-    console.log("/CanRegister?")
+    console.log("/CanLogin?")
 })
 
 //Tu będzie dodawanie do bazy danych
@@ -162,6 +159,24 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     console.log("User disconnected")
     socket.broadcast.emit('user-disconnected', users[socket.id])
+    delete users[socket.id]
+  })
+  socket.on('priv-new-user', name => {
+    console.log("New private user joined: " + name)
+    users[socket.id] = name
+    socket.broadcast.emit('priv-user-connected', name)
+  })
+  socket.on('priv-send-chat-message', message => {
+    console.log("Sent private message: " + message)
+    socket.broadcast.emit('priv-chat-message', { message: message, name: users[socket.id] })
+  })
+  socket.on('priv-send-chat-roll', roll => {
+    console.log("Sent private roll: " + roll)
+    socket.broadcast.emit('priv-chat-roll', { roll: roll, name: users[socket.id] }) 
+  })
+  socket.on('priv-disconnect', () => {
+    console.log("Private user disconnected")
+    socket.broadcast.emit('priv-user-disconnected', users[socket.id])
     delete users[socket.id]
   })
 })

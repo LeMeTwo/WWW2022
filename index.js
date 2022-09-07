@@ -72,6 +72,10 @@ $().ready(function() {
        pickerPosition: 'bottom'
     });
 
+    $("#priv-message-input").emojioneArea({
+        pickerPosition: 'bottom'
+     });
+
     $("#send-button").click(function (e){
         document.getElementsByClassName('.emojionearea-editor').value='';
     });

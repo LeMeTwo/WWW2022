@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css">
 
   <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
-  <script defer src="script.js"></script>
+  <script defer src="priv-script.js"></script>
 
 </head>
 <body>
@@ -140,20 +140,21 @@
     <div class="col-6 card">
       <div class="card-body">
         <h3>About</h3>
-        <p>Here is the group chat for the ICT department.</p>
+        <p>Here is the private chat for the ICT students.
+        </p>
         <hr>
-        <h3>ICT</h3>
+        <h3>Private Room</h3>
         <div class="container">
-          <div class="chatbox" id="chatbox"><div class="chatbox" id="message-container"></div></div>
-          <form class="d-flex justify-content-center" id="send-container">
-            <input type="text" id="message-input">
+          <div class="chatbox" id="chatbox"><div class="chatbox" id="priv-message-container"></div></div>
+          <form class="d-flex justify-content-center" id="priv-send-container">
+            <input type="text" id="priv-message-input">
             <button type="submit" id="send-button">Send</button>
           </form>
         </div>
         <hr>
         <div class="container" style="text-align: right;">
-          <div class="roller" id="roller"><div class="roller" id="roll-container"></div></div>
-          <form id="roll-button-container">
+          <div class="roller" id="roller"><div class="roller" id="priv-roll-container"></div></div>
+          <form id="priv-roll-button-container">
             <button type="submit" id="roll-button">Roll</button>
           </form>
         </div>
@@ -206,7 +207,6 @@
               <img class="profile-pic" src="profile_pics_db/pic_9.jpg" alt="profile pic here">Anser
             </a>
           </div>
-        </div>
         </div>
       </div>
     </div>
