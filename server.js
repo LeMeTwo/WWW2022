@@ -162,7 +162,7 @@ io.on('connection', socket => {
     delete users[socket.id]
   })
   socket.on('priv-new-user', name => {
-    console.log("Private user joined: " + name)
+    console.log("Private user connected: " + name)
     users[socket.id] = name
     socket.broadcast.emit('priv-user-connected', name)
   })
