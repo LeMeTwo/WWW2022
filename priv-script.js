@@ -7,6 +7,12 @@ $().ready(function (){
   const rollContainer = document.getElementById('priv-roll-container')
   const rollForm = document.getElementById('priv-roll-button-container')
 
+  const href = window.location.href
+  const last = href.lastIndexOf('/')
+  const slice = href.slice(last + 1)
+
+  socket.emit('slice', slice)
+
   var nick = new Array
   nick[0] = 'Ichigo'
   nick[1] = 'Hiro'

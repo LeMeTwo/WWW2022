@@ -1,5 +1,7 @@
 const io = require('socket.io')(3000)
 
+let word = " "
+
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
@@ -107,6 +109,7 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
       if (rows.rowCount != 0) {
         res.end("id=" + rows.id)
         console.log("Zalogowano" + body.login)
+
         return
       }
 
@@ -156,10 +159,22 @@ io.on('connection', socket => {
     console.log("Sent roll: " + roll)
     socket.broadcast.emit('chat-roll', { roll: roll, name: users[socket.id] }) 
   })
+  socket.on('slice', slice =>{
+    word = slice
+  })
   socket.on('disconnect', () => {
-    console.log("User disconnected")
-    socket.broadcast.emit('user-disconnected', users[socket.id])
-    delete users[socket.id]
+    switch(word) {
+      case 'ChatRoom.html':
+        console.log("User disconnected")
+        socket.broadcast.emit('user-disconnected', users[socket.id])
+        delete users[socket.id]
+        break;
+      case 'PrivateRoom.html':
+        console.log("Private user disconnected")
+        socket.broadcast.emit('priv-user-disconnected', users[socket.id])
+        delete users[socket.id]
+        break;
+    }
   })
   socket.on('priv-new-user', name => {
     console.log("Private user connected: " + name)
@@ -173,10 +188,5 @@ io.on('connection', socket => {
   socket.on('priv-send-chat-roll', roll => {
     console.log("Sent private roll: " + roll)
     socket.broadcast.emit('priv-chat-roll', { roll: roll, name: users[socket.id] }) 
-  })
-  socket.on('priv-disconnect', () => {
-    console.log("Private user disconnected")
-    socket.broadcast.emit('priv-user-disconnected', users[socket.id])
-    delete users[socket.id]
   })
 })
