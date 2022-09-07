@@ -115,7 +115,7 @@ nav {
 
 .main-content {
     width: 95vw;
-    padding: 20vh 0 20vh 0;
+    padding: 13.5vh 0 5vh 0;
 }
 
 h3 {
@@ -138,7 +138,7 @@ h3 {
 
 .friends-list {
     position: relative;
-    height: 60vh;
+    height: 61vh;
     background: transparent;
     overflow: hidden;
     overflow-y: scroll;
@@ -148,7 +148,7 @@ h3 {
 
 .rooms-list {
     position: relative;
-    height: 67vh;
+    height: 70vh;
     background: transparent;
     overflow: hidden;
     overflow-y: scroll;
@@ -186,10 +186,30 @@ h3 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 2vh 0 2vh 0;
+    padding: 3vh 0 2vh 0;
 }
 
 .list-group-item:hover {
+    background: transparent;
+    border: none;
+    white-space: initial;
+    overflow: initial;
+    text-overflow: initial;
+    color: white;
+}
+
+.list-group-item-profile {
+    background: transparent;
+    border: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: black;
+    padding: 2vh 0 2vh 0;
+}
+
+.list-group-item-profile:hover {
     background: transparent;
     border: none;
     white-space: initial;
