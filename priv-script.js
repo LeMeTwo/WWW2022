@@ -7,7 +7,21 @@ $().ready(function (){
   const rollContainer = document.getElementById('priv-roll-container')
   const rollForm = document.getElementById('priv-roll-button-container')
 
-  const name = prompt('What is your name?')
+  var nick = new Array
+  nick[0] = 'Ichigo'
+  nick[1] = 'Hiro'
+  nick[2] = 'Goro'
+  nick[3] = 'Ikuno'
+  nick[4] = 'Futoshi'
+  nick[5] = 'Mitsuru'
+  nick[6] = 'Miku'
+  nick[7] = 'Kokoro'
+  nick[8] = 'Zorome'
+  nick[9] = 'Naomi'
+  nick[10] = 'Zero Two'
+  var json = Math.floor(Math.random() * 11);
+  const name = nick[json]
+  //const name = prompt('What is your name?')
   appendMessage('You joined')
   socket.emit('priv-new-user', name)
 
@@ -50,8 +64,8 @@ $().ready(function (){
     dice[1] = "<img src=\'dice_sides_db/dice2.png\' width=\'50px\' height=\'50px\'>";
     dice[2] = "<img src=\'dice_sides_db/dice3.png\' width=\'50px\' height=\'50px\'>";
     dice[3] = "<img src=\'dice_sides_db/dice4.png\' width=\'50px\' height=\'50px\'>";
-    dice[4] = "<img src=\'dice_sides_db/dice5.png\' width=\'50px\' height=\'50px\'>";
-    dice[5] = "<img src=\'dice_sides_db/dice6.png\' width=\'50px\' height=\'50px\'>";
+    dice[4] = "<img src=\'dice_sides_db/ludwin.png\' width=\'50px\' height=\'50px\'>";
+    dice[5] = "<img src=\'dice_sides_db/hulicki.png\' width=\'50px\' height=\'50px\'>";
     var json = Math.floor(Math.random() * 6);
     const roll = dice[json]
     
