@@ -61,9 +61,6 @@ app.post('/CanRegister', async function (req, res) {
 
   //No validation, I`m too lazy bruh, meybe will finish at 2nd level 
 
-  var idres = result.rows[0].id
-  jresponse = {};
-
   //Pewnie do poprawki, na pewno da się zrobić lepiej
   const clientA = new Client({
     user: DATABASE_USER,
@@ -75,7 +72,8 @@ app.post('/CanRegister', async function (req, res) {
     await clientA.connect();
     //Function declared and used as var. Doesn`t look very nice. ToDo 
     var result = (await clientA.query("SELECT login FROM usersdb WHERE login='" + (body.login) + "'"))
-
+    var idres = result.rows[0].id
+    jresponse = {};
     if(result.rowCount === 0){
     await clientA.query("INSERT INTO usersdb (id, login, email, password) VALUES (" + id + ", '" + body.login + "', '" + body.email + "', '" + body.password + "');")
     jresponse.Response = "DOBRY";
