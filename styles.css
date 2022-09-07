@@ -409,6 +409,9 @@ h3 {
     overflow-x: hidden;
     max-height: 10vh;
     scrollbar-width: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .scrollable::-webkit-scrollbar {
