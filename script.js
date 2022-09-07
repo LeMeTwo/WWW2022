@@ -50,8 +50,8 @@ $().ready(function (){
     dice[1] = "<img src=\'dice_sides_db/dice2.png\' width=\'50px\' height=\'50px\'>";
     dice[2] = "<img src=\'dice_sides_db/dice3.png\' width=\'50px\' height=\'50px\'>";
     dice[3] = "<img src=\'dice_sides_db/dice4.png\' width=\'50px\' height=\'50px\'>";
-    dice[4] = "<img src=\'dice_sides_db/ludwin.png\' width=\'50px\' height=\'50px\'>";
-    dice[5] = "<img src=\'dice_sides_db/hulicki.png\' width=\'50px\' height=\'50px\'>";
+    dice[4] = "<img src=\'dice_sides_db/dice5.png\' width=\'50px\' height=\'50px\'>";
+    dice[5] = "<img src=\'dice_sides_db/dice6.png\' width=\'50px\' height=\'50px\'>";
     var json = Math.floor(Math.random() * 6);
     const roll = dice[json]
     
