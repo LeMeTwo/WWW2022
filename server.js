@@ -144,7 +144,7 @@ main().catch(console.error);
 //Chat. Simple as. 
 io.on('connection', socket => {
   socket.on('new-user', name => {
-    console.log("New user joined: " + name)
+    console.log("User connected: " + name)
     users[socket.id] = name
     socket.broadcast.emit('user-connected', name)
   })
@@ -162,7 +162,7 @@ io.on('connection', socket => {
     delete users[socket.id]
   })
   socket.on('priv-new-user', name => {
-    console.log("New private user joined: " + name)
+    console.log("Private user joined: " + name)
     users[socket.id] = name
     socket.broadcast.emit('priv-user-connected', name)
   })
