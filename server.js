@@ -37,7 +37,8 @@ const main = async () => {
   try {
       //Test połączenia z bazą
       console.log('lol');
-      console.log(await clientA.query('SELECT * FROM usersdb'));
+      id = (await clientA.query('select * from usersdb ORDER BY id DESC;')).rows[0].id + 1
+      console.log("Current id is: " + id)
   } finally {
       //Módl się, żeby ta linijka się nie załączyła
       //await clientA.end();
