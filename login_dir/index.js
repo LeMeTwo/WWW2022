@@ -12,7 +12,6 @@ $().ready(function (){
             },
             body: JSON.stringify(data)
         });
-        console.log(response.json())
         return response; // parses JSON response into native JavaScript objects
     }
 
@@ -31,16 +30,24 @@ $().ready(function (){
 
     $(".my-form > form > div > button").click(function(e){
         var password = $("#pass").val();
-        var email = $("#mail").val();
+        var login = $("#login").val();
         var generateJson = {};
 
         // Regex for password validation
-        if (password === '' || email === '') {
+        if (password === '' || login === '') {
             $(".form-alert").show().text("You need to fill in all blanks!");
         } else {
-            generateJson.email = email;
+            generateJson.login = login;
             generateJson.password = password;
-            postData(generateJson, "CanLogin");
+            postData(generateJson, "CanLogin").then((response) => response.json())
+                .then((responseJSON) => {
+                    if (responseJSON.Response === "WRONG") {
+                        $(".form-alert").show().text("Incorrect password or login!");
+                    } else {
+                        localStorage['login'] = login;
+                        window.location.replace("../MainPage.html");
+                    }
+                });;
             //window.location.replace("../MainPage.html");
         }
     });

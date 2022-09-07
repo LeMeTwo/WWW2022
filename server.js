@@ -105,9 +105,9 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
 
     await clientA.connect();
     //Function declared and used as var. Doesn`t look very nice. ToDo 
-    console.log("SELECT login FROM usersdb WHERE email='" + (body.email) + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" )
+    console.log("SELECT login FROM usersdb WHERE email='" + (body.email) + "' OR login='" + (body.login) + "' AND password='" + body.password + "';" )
 
-    var result = (await clientA.query("SELECT login, id FROM usersdb WHERE email='" + (body.email) + "' AND password='" + body.password + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" ))
+    var result = (await clientA.query("SELECT login, id FROM usersdb WHERE email='" + (body.email) + "' AND password='" + body.password + "' OR login='" + (body.login) + "' AND password='" + body.password + "';" ))
 
     jresponse = {};
     if(result.rowCount === 0){
@@ -115,10 +115,10 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
       jresponse.ID = "DUPA"
       res.setHeader('Content-Type', 'application/json');
       res.json(JSON.parse(JSON.stringify(jresponse)));
-      console.log("Zły login lub hasło " + body.email + " " + body.password)
+      console.log("Zły login lub hasło " + body.login + " " + body.password)
      }
       else{
-        console.log("Poprawny login i hasło " + body.email) 
+        console.log("Poprawny login i hasło " + body.login)
         var idres = result.rows[0].id
         jresponse.Response = "DOBRY";
         jresponse.ID = idres
