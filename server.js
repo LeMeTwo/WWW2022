@@ -83,7 +83,7 @@ app.post('/CanRegister', async function (req, res) {
     id += 1 }
     else{
       console.log("Konto istnieje " + body.login)
-      jresponse.Response = "ZŁY";
+      jresponse.Response = "WRONG";
       jresponse.ID = "DUPA" 
       res.setHeader('Content-Type', 'application/json');
       res.json(JSON.parse(JSON.stringify(jresponse)));
@@ -111,7 +111,7 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
 
     jresponse = {};
     if(result.rowCount === 0){
-      jresponse.Response = "ZŁY";
+      jresponse.Response = "WRONG";
       jresponse.ID = "DUPA"
       res.setHeader('Content-Type', 'application/json');
       res.json(JSON.parse(JSON.stringify(jresponse)));

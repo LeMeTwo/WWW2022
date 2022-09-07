@@ -1,4 +1,7 @@
 $().ready(function() {
+    // Personalised user interface
+    $("#user-name-logo").text(localStorage['login']);
+
     $(".active-counter h4").text($(".count").length);
     $("#room-1").hover(
         function () {

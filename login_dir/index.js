@@ -12,7 +12,7 @@ $().ready(function (){
             },
             body: JSON.stringify(data)
         });
-        console.log(JSON.stringify(data))
+        console.log(response.json())
         return response; // parses JSON response into native JavaScript objects
     }
 
@@ -37,8 +37,6 @@ $().ready(function (){
         // Regex for password validation
         if (password === '' || email === '') {
             $(".form-alert").show().text("You need to fill in all blanks!");
-        } else if (!(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&-]).{8,}$/.test(password))){
-            $(".form-alert").show().text("Your password does not meet our password criteria! You need to figure out something more difficult!");
         } else {
             generateJson.email = email;
             generateJson.password = password;
