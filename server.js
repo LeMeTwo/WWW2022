@@ -78,14 +78,16 @@ app.post('/CanRegister', async function (req, res) {
     await clientA.query("INSERT INTO usersdb (id, login, email, password) VALUES (" + id + ", '" + body.login + "', '" + body.email + "', '" + body.password + "');")
     jresponse.Response = "DOBRY";
     jresponse.ID = idres
-    res.end(JSON.stringify(jresponse));
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON.stringify(jresponse));
     console.log("Stworzono konto " + body.login + " " + body.email)
     id += 1 }
     else{
       console.log("Konto istnieje " + body.login)
       jresponse.Response = "ZŁY";
       jresponse.ID = "DUPA" 
-      res.end(JSON.stringify(jresponse));
+      res.setHeader('Content-Type', 'application/json');
+      res.json(JSON.stringify(jresponse));
     }
 
     console.log("/CanRegister?")
@@ -113,14 +115,16 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
     if(result.rowCount === 0){
       jresponse.Response = "ZŁY";
       jresponse.ID = "DUPA"
-      res.end(JSON.stringify(jresponse));
+      res.setHeader('Content-Type', 'application/json');
+      res.json(JSON.stringify(jresponse));
       console.log("Zły login lub hasło " + body.email + " " + body.password)
      }
       else{
         console.log("Poprawny login i hasło " + body.email) 
         jresponse.Response = "DOBRY";
         jresponse.ID = idres
-        res.end(JSON.stringify(jresponse));
+        res.setHeader('Content-Type', 'application/json');
+        res.json(JSON.stringify(jresponse));
       }
       console.log(JSON.stringify(jresponse))
     console.log("/CanLogin?")
