@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // parse application/json
 app.use(bodyParser.json())
 
-global.regcheck = 0
-
 const users = {}
 const {Client} = require('pg');
 const { connectionString } = require('pg/lib/defaults');
@@ -63,8 +61,9 @@ app.post('/CanRegister', async function (req, res) {
 
   //No validation, I`m too lazy bruh, meybe will finish at 2nd level 
 
+  var idres = result.rows[0].id
+  jresponse = {};
 
-  regcheck = 0
   //Pewnie do poprawki, na pewno da się zrobić lepiej
   const clientA = new Client({
     user: DATABASE_USER,
@@ -79,12 +78,16 @@ app.post('/CanRegister', async function (req, res) {
 
     if(result.rowCount === 0){
     await clientA.query("INSERT INTO usersdb (id, login, email, password) VALUES (" + id + ", '" + body.login + "', '" + body.email + "', '" + body.password + "');")
-    res.end(JSON.stringify('"Response":"Stworzono konto"'));
+    jresponse.Response = "DOBRY";
+    jresponse.ID = idres
+    res.end(JSON.stringify(jresponse));
     console.log("Stworzono konto " + body.login + " " + body.email)
     id += 1 }
     else{
-      console.log("Konto istnieje " + body.login) 
-      res.end(JSON.stringify('"Response":"Konto Istnieje"'));
+      console.log("Konto istnieje " + body.login)
+      jresponse.Response = "ZŁY";
+      jresponse.ID = "DUPA" 
+      res.end(JSON.stringify(jresponse));
     }
 
     console.log("/CanRegister?")
@@ -92,9 +95,6 @@ app.post('/CanRegister', async function (req, res) {
 
 app.post('/CanLogin', jsonParser, async function (req, res) {
   const body = req.body;
-
-  console.log(req.body)
-  console.log(req.body.email)
 
   //Pewnie do poprawki, na pewno da się zrobić lepiej
   const clientA = new Client({
@@ -108,15 +108,23 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
     //Function declared and used as var. Doesn`t look very nice. ToDo 
     console.log("SELECT login FROM usersdb WHERE email='" + (body.email) + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" )
 
-    var result = (await clientA.query("SELECT login FROM usersdb WHERE email='" + (body.email) + "' AND password='" + body.password + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" ))
+    var result = (await clientA.query("SELECT login, id FROM usersdb WHERE email='" + (body.email) + "' AND password='" + body.password + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" ))
+    var idres = result.rows[0].id
+    jresponse = {};
+    console.log(JSON.stringify("Response:Zły login lub hasło, id:id"))
     if(result.rowCount === 0){
-      res.end(JSON.stringify('"Response":"Zły login lub hasło"'));
+      jresponse.Response = "ZŁY";
+      jresponse.ID = "DUPA"
+      res.end(JSON.stringify(jresponse));
       console.log("Zły login lub hasło " + body.email + " " + body.password)
      }
       else{
         console.log("Poprawny login i hasło " + body.email) 
-        res.end(JSON.stringify('"Response":"Uwierzytelniono"'));
+        jresponse.Response = "DOBRY";
+        jresponse.ID = idres
+        res.end(JSON.stringify(jresponse));
       }
+      console.log(JSON.stringify(jresponse))
     console.log("/CanLogin?")
 })
 
