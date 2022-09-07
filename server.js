@@ -68,18 +68,17 @@ app.post('/CanRegister', async function (req, res) {
     database: DATABASE_NAME,
     host: DATABASE_HOST,
     }); 
-    console.log("Test")
     await clientA.connect();
     //Function declared and used as var. Doesn`t look very nice. ToDo 
     var result = (await clientA.query("SELECT login FROM usersdb WHERE login='" + (body.login) + "'"))
-    var idres = result.rows[0].id
     jresponse = {};
     if(result.rowCount === 0){
     await clientA.query("INSERT INTO usersdb (id, login, email, password) VALUES (" + id + ", '" + body.login + "', '" + body.email + "', '" + body.password + "');")
+    var idres = result.rows[0].id
     jresponse.Response = "DOBRY";
     jresponse.ID = idres
     res.setHeader('Content-Type', 'application/json');
-    res.json(JSON.stringify(jresponse));
+    res.json(JSON.parse(JSON.stringify(jresponse)));
     console.log("Stworzono konto " + body.login + " " + body.email)
     id += 1 }
     else{
@@ -87,7 +86,7 @@ app.post('/CanRegister', async function (req, res) {
       jresponse.Response = "ZŁY";
       jresponse.ID = "DUPA" 
       res.setHeader('Content-Type', 'application/json');
-      res.json(JSON.stringify(jresponse));
+      res.json(JSON.parse(JSON.stringify(jresponse)));
     }
 
     console.log("/CanRegister?")
@@ -109,24 +108,23 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
     console.log("SELECT login FROM usersdb WHERE email='" + (body.email) + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" )
 
     var result = (await clientA.query("SELECT login, id FROM usersdb WHERE email='" + (body.email) + "' AND password='" + body.password + "' OR login='" + (body.email) + "' AND password='" + body.password + "';" ))
-    var idres = result.rows[0].id
+
     jresponse = {};
-    console.log(JSON.stringify("Response:Zły login lub hasło, id:id"))
     if(result.rowCount === 0){
       jresponse.Response = "ZŁY";
       jresponse.ID = "DUPA"
       res.setHeader('Content-Type', 'application/json');
-      res.json(JSON.stringify(jresponse));
+      res.json(JSON.parse(JSON.stringify(jresponse)));
       console.log("Zły login lub hasło " + body.email + " " + body.password)
      }
       else{
         console.log("Poprawny login i hasło " + body.email) 
+        var idres = result.rows[0].id
         jresponse.Response = "DOBRY";
         jresponse.ID = idres
         res.setHeader('Content-Type', 'application/json');
-        res.json(JSON.stringify(jresponse));
+        res.json(JSON.parse(JSON.stringify(jresponse)));
       }
-      console.log(JSON.stringify(jresponse))
     console.log("/CanLogin?")
 })
 
