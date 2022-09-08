@@ -160,7 +160,7 @@ app.post('/api/roomInfo', jsonParser, async function (req, res){
      }
 
      else{
-      console.log("Wyświetlanie pokojów dla " + body.id)
+      //console.log("Wyświetlanie pokojów dla " + body.id)
       jresponse.name = result.rows[0].name
       jresponse.activeUsers = result.rows[0].currentpeople
       jresponse.lastUpdate = '12-09-2022:22-00'
