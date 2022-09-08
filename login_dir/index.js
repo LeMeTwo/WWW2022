@@ -46,7 +46,7 @@ $().ready(function (){
                     } else {
                         localStorage['id'] = responseJSON.ID;
                         localStorage['login'] = login;
-                        window.location.replace("../logged/MainPage.html");
+                        window.location.replace("../MainPage.html");
                     }
                 });
         }
