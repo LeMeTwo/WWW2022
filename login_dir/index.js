@@ -44,11 +44,11 @@ $().ready(function (){
                     if (responseJSON.Response === "WRONG") {
                         $(".form-alert").show().text("Incorrect password or login!");
                     } else {
+                        localStorage['id'] = responseJSON.ID;
                         localStorage['login'] = login;
-                        window.location.replace("../MainPage.html");
+                        window.location.replace("../logged/MainPage.html");
                     }
-                });;
-            //window.location.replace("../MainPage.html");
+                });
         }
     });
 });

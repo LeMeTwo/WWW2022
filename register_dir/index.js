@@ -50,9 +50,9 @@ $().ready(function () {
                         if (responseJSON.Response === "WRONG") {
                             $(".form-alert").show().text("The account already exists! Identity theft is not a joke Jim!");
                         } else {
-                            localStorage['email'] = email;
+                            localStorage['id'] = responseJSON.ID;
                             localStorage['login'] = login;
-                            window.location.replace("../MainPage.html");
+                            window.location.replace("../logged/MainPage.html");
                         }
                     });
             }
