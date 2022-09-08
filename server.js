@@ -147,7 +147,7 @@ app.post('/api/roomInfo', jsonParser, async function (req, res){
 
     const body = req.body;
 
-    var result = (await clientA.query("SELECT *, id FROM roomsdb WHERE id='" + (body.id) + " OR roomid=0;"))
+    var result = (await clientA.query("SELECT *, id FROM roomsdb WHERE id='" + (body.id) + "' OR roomid=0;"))
     jresponse = {};
     if(result.rowCount === 0){
       jresponse.name = 'teleplaża'
