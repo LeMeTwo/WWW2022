@@ -1,0 +1,130 @@
+<!-- Roleplay chat project. Copyright 2022.
+     Management page for logged users
+-->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Roleplay Chat</title>
+    <!-- Roboto font tags -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Stylesheet -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Own script -->
+    <script src="index.js"></script>
+</head>
+<body>
+    <nav class="milk-glass">
+        <div class="container">
+            <div class="row">
+                <a href="MainPage.html" id="user-name-logo" class="logo"></a>
+            </div>
+        </div>
+        <div class="container">
+            <ul class="row">
+                <li class="col-auto">
+                    <a href="homepage.html">
+                        <img src="icons_db/Logout.png" alt="Logout">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid main-content">
+        <div class="row justify-content-center">
+            <div class="col-2 card" style="margin-right: 2vw">
+                <div class="card-body">
+                    <h3>Your plays</h3>
+                    <hr>
+                    <div class="rooms-list">
+                        <div class="list-group" id="room-place">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="col-6 card">
+                <div class="card-body">
+                    <h3>About</h3>
+                    <p class="scrollable">This is the description template of main page.</p>
+                    <hr>
+                    <div class="container">
+                        <div class="main-logo"><p class="chatter hide-me">CHATTER</p></div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="col-2 card" style="margin-left: 2vw">
+                <div class="card-body">
+                    <h3>
+                        <a href="#" class="link">Create play</a>
+                    </h3>
+                    <hr>
+                    <h3>Friends online</h3>
+                    <div class="active-counter">
+                        <h4></h4>
+                    </div>
+                    <div class="friends-list">
+                        <div class="list-group">
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="backgrounds_db/pattern_background.png" alt="profile pic here">Radek
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="icons_db/Account.png" alt="profile pic here">Sławek
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_1.png" alt="profile pic here">Mj00r
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_2.png" alt="profile pic here">Potężny Warmianin
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_3.png" alt="profile pic here">Loudwin
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_4.png" alt="profile pic here">Foczek
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_5.png" alt="profile pic here">Adam Flinta
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_6.png" alt="profile pic here">Leszek
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_7.jpg" alt="profile pic here">Kaczor Donald
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_8.png" alt="profile pic here">Jim Beam
+                            </a>
+                            <a class="list-group-item-profile count" href="PrivateRoom.html">
+                                <img class="profile-pic" src="profile_pics_db/pic_9.jpg" alt="profile pic here">Anser
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my-footer">
+        <div class="container-fluid">
+            <br><br>
+            <div class="row justify-content-center text-center">
+                <h2 class="colorful-text" style="font-size: 4vh">CHATTER</h2>
+            </div>
+            <div class="row center-block text-center">
+                <h3 class="colorful-text" style="font-size: 2vh">Made by Krisplis</h3>
+            </div>
+            <div class="row center-block text-center">
+                <p style="color: #999999; font-size: 1vh">Copyright 2022</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
