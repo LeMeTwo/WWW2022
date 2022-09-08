@@ -128,17 +128,52 @@ app.post('/CanLogin', jsonParser, async function (req, res) {
     console.log("/CanLogin?")
 })
 
-//Tu będzie dodawanie do bazy danych
-//Jeszcze niegotowe
 //Chyba niepotrzebne(?)
-//Na razie nie wywoływać!
+//Debug
 app.get('/AddToDB',  async function (req, res) {
-  console.log(req)
-  return 
+  console.log(req) 
   console.log("/AddToDB?")
 })
 
 //ToDO: Obsługa bazy z pokojami 
+app.post('/api/roomInfo', jsonParser, async function (req, res){
+  const clientA = new Client({
+    user: DATABASE_USER,
+    password: DATABASE_PASSWORD,
+    database: DATABASE_NAME,
+    host: DATABASE_HOST,
+    }); 
+    await clientA.connect();
+
+    const body = req.body;
+
+    var result = (await clientA.query("SELECT *, id FROM roomsdb WHERE id='" + (body.id) + " OR roomid=0;"))
+    jresponse = {};
+    if(result.rowCount === 0){
+      jresponse.name = 'teleplaża'
+      jresponse.activeUsers = 0
+      jresponse.lastUpdate = '12-09-2022:22-00'
+      jresponse.memberCount = 255
+      res.setHeader('Content-Type', 'application/json');
+      res.json(JSON.parse(JSON.stringify(jresponse)));
+      console.log("Brak pokojów do wyświetlenia " + body.login + " " + body.password)
+     }
+
+     else{
+      console.log("Wyświetlanie pokojów dla " + body.id)
+      jresponse.name = result.rows[0].name
+      jresponse.activeUsers = result.rows[0].currentpeople
+      jresponse.lastUpdate = '12-09-2022:22-00'
+      jresponse.memberCount = result.rows[0].maxpeople
+      res.setHeader('Content-Type', 'application/json');
+      res.json(JSON.parse(JSON.stringify(jresponse)));
+    }
+
+})
+
+
+
+
 //ToDo: Tworzenie pokojów
 //ToDo: Usuwanie urzytkowników (może)
 
